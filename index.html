@@ -1,77 +1,75 @@
 <!DOCTYPE html>
-<html lang="bn">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>এলাকা ডেলিভারি - পার্সোনাল ফুড অ্যাপ</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Gourang Nagar Food Delivery</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
-<body class="bg-gray-100 font-sans">
-
-    <header class="bg-red-500 text-white p-4 text-center shadow-lg">
-        <h1 class="text-2xl font-bold">এলাকা ফুড ডেলিভারি</h1>
-        <p class="text-sm">দ্রুত এবং ফ্রেশ খাবার আপনার দরজায়</p>
+<body>
+    <header>
+        <h1>Gourang Nagar Food Delivery Service</h1>
+        <nav>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#menu">Menu</a></li>
+                <li><a href="#cart">Cart</a></li>
+                <li><a href="#orders">Orders</a></li>
+            </ul>
+        </nav>
     </header>
-
-    <main class="p-4 max-w-md mx-auto">
-        
-        <div class="grid gap-4">
-            <div class="bg-white p-4 rounded-lg shadow flex justify-between items-center">
-                <div>
-                    <h3 class="font-bold">চিকেন বিরিয়ানি</h3>
-                    <p class="text-gray-600">৳ ১৫০.০০</p>
+    <main>
+        <section id="menu">
+            <h2>Our Menu</h2>
+            <div class="food-items">
+                <div class="food-item">
+                    <h3>তেলের পিঠে</h3>
+                    <p>Traditional Bengali Food</p>
+                    <span class="price">$5</span>
+                    <button>Add to Cart</button>
                 </div>
-                <button onclick="addToCart('চিকেন বিরিয়ানি', 150)" class="bg-green-500 text-white px-4 py-2 rounded">যোগ করুন</button>
-            </div>
-
-            <div class="bg-white p-4 rounded-lg shadow flex justify-between items-center">
-                <div>
-                    <h3 class="font-bold">স্পেশাল বার্গার</h3>
-                    <p class="text-gray-600">৳ ১২০.০০</p>
+                <div class="food-item">
+                    <h3>মিষ্টি কেক</h3>
+                    <p>Sweet Cake for celebrations</p>
+                    <span class="price">$15</span>
+                    <button>Add to Cart</button>
                 </div>
-                <button onclick="addToCart('স্পেশাল বার্গার', 120)" class="bg-green-500 text-white px-4 py-2 rounded">যোগ করুন</button>
+                <div class="food-item">
+                    <h3>বার্থডে কেক</h3>
+                    <p>Special Birthday Cake</p>
+                    <span class="price">$20</span>
+                    <button>Add to Cart</button>
+                </div>
+                <div class="food-item">
+                    <h3>এনিভার্সারি কেক</h3>
+                    <p>Anniversary Celebration Cake</p>
+                    <span class="price">$25</span>
+                    <button>Add to Cart</button>
+                </div>
+                <div class="food-item">
+                    <h3>Ratings</h3>
+                    <p>Your feedback matters!</p>
+                    <input type="number" min="1" max="5" placeholder="Rate us (1-5)">
+                </div>
             </div>
-        </div>
-
-        <div class="mt-8 bg-white p-6 rounded-lg shadow">
-            <h2 class="text-xl font-bold mb-4 border-b pb-2">অর্ডার ডিটেইলস</h2>
-            <div id="cartItems" class="mb-4 text-gray-700 italic text-sm">কার্ট খালি...</div>
-            
-            <input type="text" id="name" placeholder="আপনার নাম" class="w-full p-2 mb-2 border rounded">
-            <input type="text" id="address" placeholder="বিস্তারিত ঠিকানা" class="w-full p-2 mb-2 border rounded">
-            <p class="text-red-500 font-bold mb-4">বিকাশ করুন:9062858793 (পার্সোনাল)</p>
-            <input type="text" id="trxId" placeholder="বিকাশ TrxID দিন" class="w-full p-2 mb-4 border rounded">
-            
-            <button onclick="sendOrder()" class="w-full bg-red-600 text-white py-3 rounded-lg font-bold hover:bg-red-700">অর্ডার কনফার্ম করুন (WhatsApp)</button>
-        </div>
+        </section>
+        <section id="cart">
+            <h2>Your Cart</h2>
+            <div class="cart-items">
+                <!-- Cart items will be displayed here -->
+            </div>
+            <button>Proceed to Payment</button>
+        </section>
+        <section id="orders">
+            <h2>Your Orders</h2>
+            <div class="order-tracking">
+                <!-- Order tracking will be available here -->
+            </div>
+        </section>
     </main>
-
-    <script>
-        let cart = [];
-        let total = 0;
-
-        function addToCart(item, price) {
-            cart.push(item);
-            total += price;
-            document.getElementById('cartItems').innerText = "অর্ডার: " + cart.join(', ') + " | মোট: ৳" + total;
-        }
-
-        function sendOrder() {
-            const name = document.getElementById('name').value;
-            const address = document.getElementById('address').value;
-            const trx = document.getElementById('trxId').value;
-            const myNumber = "+919062858793"; // এখানে আপনার নিজের নম্বর দিন
-
-            if(!name || !address || cart.length === 0) {
-                alert("দয়া করে নাম, ঠিকানা এবং খাবার সিলেক্ট করুন!");
-                return;
-            }
-
-            const message = `নতুন অর্ডার!\nনাম: ${name}\nঠিকানা: ${address}\nখাবার: ${cart.join(', ')}\nমোট টাকা: ৳${total}\nTrxID: ${trx}`;
-            const whatsappUrl = `https://wa.me/${myNumber}?text=${encodeURIComponent(message)}`;
-            
-            window.open(whatsappUrl, '_blank');
-        }
-    </script>
+    <footer>
+        <p>&copy; 2026 Gourang Nagar Food Delivery</p>
+    </footer>
+    <script src="script.js"></script>
 </body>
 </html>
